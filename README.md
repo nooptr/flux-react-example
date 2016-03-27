@@ -1,0 +1,2 @@
+# flux-react-example
+FluxアーキテクチャーとともにReactJSを併用して簡単なアプリを構築
