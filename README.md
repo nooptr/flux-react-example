@@ -1,4 +1,4 @@
-#### Flux + React TodoMVC Example
+#### Flux + React Todo Example
 ![react flux architecture](https://cloud.githubusercontent.com/assets/5398914/14071719/efa7535a-f4f2-11e5-9365-9fc8d47f9431.png?)
 
 An application architecture for React utilizing a unidirectional data flow.
@@ -7,7 +7,7 @@ An application architecture for React utilizing a unidirectional data flow.
 
 The [Flux](http://facebook.github.io/flux) and [React](http://facebook.github.io/react) websites are great resources for getting started.
 
-Read the blog post announcing Flux: ["An Application Architecture for React"](http://facebook.github.io/react/blog/2014/05/06/flux.html), then read more about the [Flux architecture](http://facebook.github.io/flux/docs/overview.html) and a [TodoMVC tutorial](http://facebook.github.io/flux/docs/todo-list.html) explaining the structure of the files in this folder.  After you feel comfortable with the TodoMVC example, you may be interested in the [Chat App example](../flux-react-example), which is more complex.
+Read the blog post announcing Flux: ["An Application Architecture for React"](http://facebook.github.io/react/blog/2014/05/06/flux.html), then read more about the [Flux architecture](http://facebook.github.io/flux/docs/overview.html) and a [Todo tutorial](http://facebook.github.io/flux/docs/todo-list.html) explaining the structure of the files in this folder. 
 
 ## Running
 
