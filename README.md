@@ -3,6 +3,10 @@
 
 An application architecture for React utilizing a unidirectional data flow.
 
+## Demo
+http://thangnv107.github.io/flux-react-example/
+
+
 ## Learning Flux
 
 The [Flux](http://facebook.github.io/flux) and [React](http://facebook.github.io/react) websites are great resources for getting started.
