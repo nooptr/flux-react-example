@@ -2,31 +2,38 @@
   "name": "flux-react-example",
   "version": "0.0.1",
   "description": "Simple example using Flux and ReactJs",
-  "main": "app.min.js",
-  "scripts": {
-    "build": "node_modules/.bin/gulp"
+  "repository": "https://github.com/thangnv107/flux-react-example",
+  "main": "js/app.js",
+  "dependencies": {
+    "classnames": "^2.1.3",
+    "flux": "^2.0.1",
+    "keymirror": "~0.1.0",
+    "object-assign": "^1.0.0",
+    "react": "^0.14.7",
+    "react-bootstrap": "^0.28.4",
+    "react-dom": "^0.14.7"
   },
-  "keywords": [
-    "flux",
-    "reactjs"
-  ],
-  "authors": [
-    {
-      "name": "Ngo Van Thang",
-      "email": "thangnvbkhn@gmail.com"
-    }
-  ],
-  "license": "MIT",
   "devDependencies": {
-    "browserify": "^10.2.1",
-    "flux": "^2.0.3",
-    "gulp": "^3.8.11",
-    "gulp-streamify": "0.0.5",
-    "gulp-uglify": "^1.2.0",
-    "object-assign": "^2.0.0",
-    "react": "^0.13.3",
-    "reactify": "^1.1.1",
-    "vinyl-source-stream": "^1.1.0",
-    "watchify": "^3.2.1"
+    "browserify": "^6.2.0",
+    "envify": "^3.0.0",
+    "jest-cli": "^0.4.3",
+    "reactify": "^0.15.2",
+    "uglify-js": "~2.4.15",
+    "watchify": "^2.1.1"
+  },
+  "scripts": {
+    "start": "watchify -o assets/js/bundle.js -v -d src/app.js",
+    "build": "browserify . -t [envify --NODE_ENV production] | uglifyjs -cm > assets/js//bundle.min.js",
+    "test": "jest"
+  },
+  "author": "Ngo Van Thang",
+  "browserify": {
+    "transform": [
+      "reactify",
+      "envify"
+    ]
+  },
+  "jest": {
+    "rootDir": "./js"
   }
 }

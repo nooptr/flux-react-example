@@ -1,9 +1,15 @@
-var AppDispatcher = reuqire('../dispatcher/AppDispatcher');
+var AppDispatcher = require('../dispatcher/AppDispatcher.js');
 var EventEmitter = require('events').EventEmitter;
-var TodoConstants = require('../constants/TodoConstants');
+var TodoConstants = require('../constants/TodoConstants.js');
 var assign = require('object-assign');
 
 var CHANGE_EVENT = 'change';
+
+//var _todos = [
+//    { id: 1, text: 'learning about react js and flux', complete: true },
+//    { id: 2, text: 'make demo flux', complete: false },
+//    { id: 3, text: 'presentation', complete: false }
+//];
 
 var _todos = {};
 
@@ -29,13 +35,11 @@ function update(id, updates) {
     _todos[id] = assign({}, _todos[id], updates);
 }
 
-/**
- * Update all TODO item
- * @param {object} updates
- */
-function updateAll(updates) {
-    for (var id in _todos) {
-        update(id, updates);
+function archive() {
+    for (var key in _todos) {
+        if (_todos[key].complete) {
+            destroy(key);
+        }
     }
 }
 
@@ -47,17 +51,7 @@ function destroy(id) {
     delete _todos[id];
 }
 
-/**
- * Delete all the completed TODO item
- */
-function destroyCompleted() {
-    for (var id in _todos) {
-        if (_todos[id].complete) {
-            destroy(id);
-        }
-    }
-}
-
+// We need EventEmitter to broadcast the change event to View
 var TodoStore = assign({}, EventEmitter.prototype, {
 
     /**
@@ -84,32 +78,37 @@ var TodoStore = assign({}, EventEmitter.prototype, {
      */
     removeChangeListener: function(callback) {
         this.removeListener(CHANGE_EVENT, callback);
-    },
+    }
+});
 
-    dispatcherIndex: AppDispatcher.register(function(payload) {
-        var action = payload.action;
-        var text;
-
-        switch(action.actionType) {
-            case TodoConstants.TODO_CREATE:
-                text = action.text.trim();
-                if (text !== '') {
-                    create(text);
-                    TodoStore.emitChange();
-                }
-                break;
-
-            case TodoConstants.TODO_DESTROY:
-                destroy(action.id);
+AppDispatcher.register(function(action) {
+    switch (action.actionType) {
+        case TodoConstants.TODO_CREATE:
+            var text = action.text.trim();
+            if (text !== '') {
+                create(text);
                 TodoStore.emitChange();
-                break;
-
-            // add more cases for other actionTypes, like TODO_UPDATE, etc.
-        }
-
-        return true; // No errors. Needed by promise in Dispatcher.
-    })
-
+            }
+            break;
+        case TodoConstants.TODO_UPDATE:
+            var id = action.id;
+            var todo = _todos[id];
+            todo.complete = todo.complete ? false : true;
+            update(id, todo);
+            TodoStore.emitChange();
+            break;
+        case TodoConstants.TODO_ARCHIVE:
+            archive();
+            TodoStore.emitChange();
+            break;
+        case TodoConstants.TODO_DESTROY:
+            var id = action.id;
+            destroy(id);
+            TodoStore.emitChange();
+            break;
+        default:
+            // no op
+    }
 });
 
 module.exports = TodoStore;

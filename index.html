@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Flux Example by wataridori</title>
+    <meta charset="utf-8">
+    <title>Flux Example</title>
     <link rel="icon" type="image/png" href="assets/img/flux_logo.png">
-    <link type="text/css" rel="stylesheet" href="assets/css/materialize.min.css"  media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="assets/css/style.css"  media="screen,projection"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/react.js"></script>
+    <script src="assets/js/react-dom.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/react-bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </head>
-<body class="grey lighten-3">
-<div id="app"></div>
-<script type="text/javascript" src="assets/js/jquery-2.1.4.min.js"></script>
-<script type="text/javascript" src="assets/js/materialize.min.js"></script>
-<script type="text/javascript" src="assets/js/app.min.js"></script>
+<body>
+<div role="main" class="container well" style="width: 400px; margin-top: 30px">
+    <h2>Todo</h2>
+    <div class="span4">
+        <div id="app"></div>
+    </div>
+</div>
+<script src="src/bundle.js"></script>
 </body>
 </html>
